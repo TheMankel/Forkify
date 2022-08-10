@@ -1,0 +1,19 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Forkify is vanilla JS application that interacts with the Forkify API to fetch and display recipe food data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheMankel/Forkify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheMankel/Forkify/issues"
+  },
+  "homepage": "https://github.com/TheMankel/Forkify#readme"
+}
