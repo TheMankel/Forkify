@@ -4,7 +4,9 @@
   "description": "Forkify is vanilla JS application that interacts with the Forkify API to fetch and display recipe food data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,14 @@
   "bugs": {
     "url": "https://github.com/TheMankel/Forkify/issues"
   },
-  "homepage": "https://github.com/TheMankel/Forkify#readme"
+  "homepage": "https://github.com/TheMankel/Forkify#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.7.0",
+    "parcel": "^2.7.0"
+  },
+  "dependencies": {
+    "core-js": "^3.24.1",
+    "fractional": "^1.0.0",
+    "regenerator-runtime": "^0.13.9"
+  }
 }
