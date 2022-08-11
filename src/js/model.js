@@ -1,6 +1,7 @@
 import { async } from 'regenerator-runtime';
 import { API_URL } from './config';
 import { RES_PER_PAGE } from './config';
+import { getJSON } from './helpers';
 
 export const state = {
   recipe: {},
@@ -15,13 +16,50 @@ export const state = {
 
 export const loadRecipe = async function (id) {
   try {
-    const res = await fetch(`${API_URL}${id}`);
-    const data = await res.json();
+    const data = await getJSON(`${API_URL}${id}`);
 
-    if (!res.ok) throw new Error(`${data.message} Status code: ${res.status}`);
+    const { recipe } = data.data;
 
-    console.log(data);
+    state.recipe = {
+      id: recipe.id,
+      title: recipe.title,
+      publisher: recipe.publisher,
+      sourceUrl: recipe.source_url,
+      image: recipe.image_url,
+      servings: recipe.servings,
+      cookingTime: recipe.cooking_time,
+      ingredients: recipe.ingredients,
+    };
+
+    if (state.bookmarks.some((bookmark) => bookmark.id === id))
+      state.recipe.bookmarked = true;
+    else state.recipe.bookmarked = false;
+    console.log(state.recipe);
   } catch (err) {
+    console.error(`${err} 💥💥💥💥`);
+    throw err;
+  }
+};
+
+export const loadSearchResults = async function (query) {
+  try {
+    state.search.query = query;
+
+    const data = await getJSON(`${API_URL}?search=${query}`);
+    const { recipes } = data.data;
+
+    state.search.results = recipes.map((rec) => {
+      return {
+        id: rec.id,
+        image: rec.image_url,
+        publisher: rec.publisher,
+        title: rec.title,
+      };
+    });
+    console.log(state.search.results);
+    state.search.page = 1;
+  } catch (err) {
+    console.error(`${err} 💥💥💥💥`);
     throw err;
   }
 };
