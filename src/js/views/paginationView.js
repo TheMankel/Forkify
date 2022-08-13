@@ -20,11 +20,10 @@ class PaginationView extends View {
     );
     const curPage = this._data.page;
 
-    return `
-      ${
-        curPage === 1
-          ? ''
-          : `
+    const btnPrev =
+      curPage === 1
+        ? ''
+        : `
         <button class="btn--inline pagination__btn--prev" data-goto="${
           curPage - 1
         }">  
@@ -33,12 +32,12 @@ class PaginationView extends View {
           </svg>
           <span>Page ${curPage - 1}</span>
         </button>
-        `
-      }
-      ${
-        curPage === numPages
-          ? ''
-          : `
+      `;
+
+    const btnNext =
+      curPage === numPages
+        ? ''
+        : `
         <button class="btn--inline pagination__btn--next" data-goto="${
           curPage + 1
         }">
@@ -47,8 +46,11 @@ class PaginationView extends View {
             <use href="${icons}#icon-arrow-right"></use>
           </svg>
         </button>
-        `
-      }
+      `;
+
+    return `
+      ${btnPrev}
+      ${btnNext}
     `;
   }
 }
