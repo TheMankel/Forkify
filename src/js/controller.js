@@ -82,6 +82,8 @@ const controlAddRecipe = async function (newRecipe) {
 
     addRecipeView.renderMessage();
 
+    controlBookmarks();
+
     setTimeout(function () {
       addRecipeView.toggleWindow();
     }, MODAL_CLOSE_SEC);
